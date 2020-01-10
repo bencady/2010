@@ -211,6 +211,7 @@ function startupscripts() {
     $(".course-menu").html(makeCoursesMenu(courses));
 
     $('body').on('click', '.coursesitem', addCourse);
+    $('body').on('click', '.coursesitem', virtualAdviser);
     $('body').on('click', '.close', removeCourse);
     $('body').on('change', '#cohort', updateCohort);
     $('body').on('click', '#importclasslist', importClassList);
@@ -251,3 +252,26 @@ function saveCourses(e) {
 // for (var key in localStorage) {
 //   console.log(key + ':' + localStorage[key]);
 // }
+
+function virtualAdviser(e){
+    $("#virtualAdviser").text("You have fully registered");
+    console.log(myCourses);
+    let courseCount = 0;
+    for(let i = 0; i < myCoures.length; i++){
+        courseCount = courseCount + 1;
+    }
+    if(myCourses.length < 84){
+        $("#virtualAdviser").text("You have reistered for" + myCourses + "courses");
+    }
+    let mathCount = 0;
+     for(let i = 0; i < myCoures.length; i++){
+        if(myCoures[i].req == "MA"){
+            mathCount = mathCount + 1;
+        }
+        
+    }
+    if(mathCount < 12){
+         $("#virtualAdviser").text("We Recomend you register for 12 math courses");
+    }
+
+}
